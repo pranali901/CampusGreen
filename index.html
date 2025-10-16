@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CampusGreen — Eco-Friendly Products for Students</title>
+  <meta name="description" content="CampusGreen: curated eco-friendly products for students. Learn, shop sustainably, and submit your work." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --bg: #ffffff;
+      --card: #ffffff;
+      --muted: #3b6f4d;
+      --text: #0f3d1e;
+      --accent: #2dbb63; /* primary green */
+      --accent-2: #1f8f4e; /* deeper green */
+      --ring: rgba(45, 187, 99, 0.4);
+      --shadow: 0 10px 30px rgba(0,0,0,0.12);
+      --glass: blur(10px) saturate(120%);
+      --grad-1: radial-gradient(1200px 600px at 10% -10%, rgba(31,143,78,0.10), transparent 40%);
+      --grad-2: radial-gradient(800px 500px at 90% 10%, rgba(102,209,122,0.10), transparent 40%);
+      --grad-3: linear-gradient(180deg, rgba(31,143,78,0.06), rgba(31,143,78,0.02));
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;line-height:1.55}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .bg-wrap::before,
+    .bg-wrap::after{
+      content:"";
+      position:fixed;inset:-20% -10% auto -10%;
+      height:70vh;z-index:-2;pointer-events:none
+    }
+    .bg-wrap::before{background:var(--grad-1)}
+    .bg-wrap::after{background:var(--grad-2)}
+    header{
+      position:sticky;top:0;backdrop-filter:var(--glass);
+      background:#ffffff;
+      border-bottom:1px solid rgba(0,0,0,0.06);
+      z-index:50
+    }
+    .nav{
+      max-width:1200px;margin:0 auto;padding:16px 20px;
+      display:flex;align-items:center;justify-content:space-between;gap:16px
+    }
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:0.2px}
+    .logo{
+      width:36px;height:36px;border-radius:10px;
+      background:conic-gradient(from 180deg at 50% 50%, #1f8f4e, #66d17a, #b2f2c2, #1f8f4e);
+      box-shadow:0 8px 20px rgba(102,209,122,.35), inset 0 0 20px rgba(255,255,255,.12)
+    }
+    .logo-img{width:36px;height:36px;border-radius:10px;object-fit:contain;box-shadow:0 8px 20px rgba(31,143,78,.15)}
+    .nav-links{display:flex;gap:20px;align-items:center}
+    .nav-links a{padding:8px 10px;border-radius:8px;color:var(--muted)}
+    .nav-links a:hover{color:var(--text);background:rgba(0,0,0,0.06)}
+    .cta{
+      background:linear-gradient(135deg, var(--accent), var(--accent-2));
+      color:#ffffff;padding:10px 14px;border-radius:10px;font-weight:700;
+      box-shadow:0 10px 24px rgba(31,143,78,0.25);border:0
+    }
+    .cta:hover{filter:brightness(1.05)}
+    .hero{
+      max-width:1200px;margin:0 auto;padding:60px 20px 28px;
+      display:grid;grid-template-columns:1.2fr 1fr;gap:36px;align-items:center
+    }
+    @media (max-width:900px){.hero{grid-template-columns:1fr;padding-top:40px}}
+    .tag{
+      display:inline-flex;gap:8px;align-items:center;
+      padding:6px 10px;border-radius:999px;background:rgba(102,209,122,0.12);
+      color:#baf6c8;border:1px solid rgba(102,209,122,0.25);font-weight:600
+    }
+    h1{margin:14px 0 10px;font-size:46px;line-height:1.1;letter-spacing:-0.02em}
+    @media (max-width:600px){h1{font-size:34px}}
+    .sub{color:var(--muted);max-width:60ch}
+    .hero-art{
+      position:relative;aspect-ratio:1.1;border-radius:20px;overflow:hidden;
+      background:linear-gradient(180deg, rgba(14,25,18,0.08), rgba(14,25,18,0.03)), var(--grad-3);
+      border:1px solid rgba(0,0,0,0.08);box-shadow:var(--shadow)
+    }
+    .hero-art .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .hero-art .leaf{
+      position:absolute;border-radius:50%;
+      filter:blur(20px) saturate(140%);opacity:.7
+    }
+    .leaf.l1{width:220px;height:220px;left:-30px;top:-30px;background:#34c75940}
+    .leaf.l2{width:180px;height:180px;right:-20px;top:10px;background:#66d17a33}
+    .leaf.l3{width:260px;height:260px;left:30%;bottom:-60px;background:#2ecc7140}
+    .panel{
+      max-width:1200px;margin:10px auto 0;padding:0 20px 60px;
+      display:grid;grid-template-columns:repeat(3,1fr);gap:18px
+    }
+    @media (max-width:900px){.panel{grid-template-columns:1fr 1fr}}
+    @media (max-width:620px){.panel{grid-template-columns:1fr}}
+    .card{
+      border:1px solid rgba(0,0,0,0.08);border-radius:16px;
+      background:linear-gradient(180deg, rgba(31,143,78,0.03), rgba(31,143,78,0.01));
+      backdrop-filter:var(--glass);box-shadow:var(--shadow);padding:18px
+    }
+    .kicker{color:#1f8f4e;font-weight:700;margin-bottom:6px;letter-spacing:.2px}
+    .muted{color:var(--muted)}
+    .grid{
+      max-width:1200px;margin:0 auto;padding:10px 20px 60px;
+      display:grid;grid-template-columns:repeat(3,1fr);gap:18px
+    }
+    @media (max-width:900px){.grid{grid-template-columns:1fr 1fr}}
+    @media (max-width:620px){.grid{grid-template-columns:1fr}}
+    .product{
+      border:1px solid rgba(0,0,0,0.08);border-radius:18px;overflow:hidden;
+      background:var(--card);backdrop-filter:var(--glass);box-shadow:var(--shadow);
+      display:flex;flex-direction:column
+    }
+    .product img{aspect-ratio:16/10;object-fit:cover}
+    .product .content{padding:14px}
+    .pill{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(31,143,78,0.10);color:#1f8f4e;font-weight:700;font-size:12px;border:1px solid rgba(31,143,78,0.25)}
+    .row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .price{font-weight:800}
+    .buy{
+      display:none
+    }
+    .section{
+      max-width:1200px;margin:0 auto;padding:40px 20px 70px
+    }
+    .section h2{margin:0 0 10px;font-size:28px}
+    .submission{
+      display:grid;grid-template-columns:2fr 1fr;gap:18px
+    }
+    @media (max-width:900px){.submission{grid-template-columns:1fr}}
+    .box{
+      border:1px solid rgba(0,0,0,0.08);border-radius:16px;padding:18px;
+      background:linear-gradient(180deg, rgba(31,143,78,0.03), rgba(31,143,78,0.01));
+      backdrop-filter:var(--glass)
+    }
+    .field{display:flex;gap:10px}
+    .input{
+      flex:1;padding:12px 14px;border-radius:12px;border:1px solid rgba(0,0,0,0.12);
+      background:rgba(0,0,0,0.02);color:var(--text)
+    }
+    .btn{
+      padding:12px 14px;border-radius:12px;border:0;font-weight:700;cursor:pointer
+    }
+    .btn-primary{background:linear-gradient(135deg, var(--accent), var(--accent-2));color:#ffffff}
+    .btn-ghost{
+      background:transparent;border:1px solid rgba(0,0,0,0.14);color:var(--text)
+    }
+    .links{display:flex;gap:12px;flex-wrap:wrap}
+    footer{
+      border-top:1px solid rgba(0,0,0,0.06);
+      background:linear-gradient(180deg, rgba(31,143,78,0.06), rgba(31,143,78,0.02))
+    }
+    .foot{
+      max-width:1200px;margin:0 auto;padding:24px 20px;color:var(--muted);
+      display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px
+    }
+    .tiny{font-size:12px;color:#8aa598}
+  </style>
+</head>
+<body>
+  <div class="bg-wrap"></div>
+
+  <header>
+    <nav class="nav">
+      <div class="brand">
+        <img class="logo-img" src="assets/logo.jpeg" alt="CampusGreen logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+        <div class="logo" aria-hidden="true" style="display:none"></div>
+        <span>CampusGreen</span>
+      </div>
+      <div class="nav-links">
+        <a href="#products">Products</a>
+        <a href="#why">Why Green</a>
+        <a href="#submission">Submission</a>
+        <a class="cta" href="#products">Shop Sustainably</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        
+        <h1>Eco-friendly products that fit your campus life</h1>
+        <p class="sub">Curated gear that’s durable, affordable, and sustainably made. From reusable essentials to solar-powered gadgets—learn, live, and lead greener.</p>
+        <div style="display:flex;gap:12px;margin-top:16px">
+          <a class="btn btn-primary" href="#products">Browse Picks</a>
+          <a class="btn btn-ghost" href="#why">Learn More</a>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <img class="hero-img" src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1400&q=80" alt="Green campus" />
+        <div class="leaf l1"></div>
+        <div class="leaf l2"></div>
+        <div class="leaf l3"></div>
+      </div>
+    </section>
+
+    <section class="panel" id="why">
+      <div class="card">
+        <div class="kicker">Sustainable by Design</div>
+        <div class="muted">We spotlight materials like bamboo, recycled aluminum, and organic cotton—built to last all semester and beyond.</div>
+      </div>
+      <div class="card">
+        <div class="kicker">Student Budget Friendly</div>
+        <div class="muted">Best value per use. Pay less over time by choosing quality and reusability instead of disposables.</div>
+      </div>
+      <div class="card">
+        <div class="kicker">Carbon Conscious</div>
+        <div class="muted">Vendors we feature share emissions data and packaging commitments, so your choices count where it matters.</div>
+      </div>
+    </section>
+
+    <section class="grid" id="products">
+      <article class="product">
+        <img src="assets/bottle.webp" alt="Insulated Bottle" />
+        <div class="content">
+          <div class="row">
+            <span class="pill">Reusable</span>
+            <span class="price">250₹</span>
+          </div>
+          <h3>Insulated Bottle</h3>
+          <p class="muted">Keeps drinks cold 24h, hot 12h. Steel, not plastic.</p>
+        </div>
+      </article>
+
+      <article class="product">
+        <img src="assets/solar.jpg" alt="Solar Power Bank" />
+        <div class="content">
+          <div class="row">
+            <span class="pill">Solar</span>
+            <span class="price">400₹</span>
+          </div>
+          <h3>Solar Power Bank</h3>
+          <p class="muted">Top up on the quad. USB-C fast charge, 10,000mAh.</p>
+        </div>
+      </article>
+
+      <article class="product">
+        <img src="assets/tiffin.jpg" alt="Campus Lunch Kit" />
+        <div class="content">
+          <div class="row">
+            <span class="pill">Zero Waste</span>
+            <span class="price">200₹</span>
+          </div>
+          <h3>Campus Lunch Kit</h3>
+          <p class="muted">Bamboo cutlery, steel box, cotton wrap. No more disposables.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="section" id="submission">
+      <h2>Submission</h2>
+      <p class="muted" style="margin:0 0 14px">CourseWork for the semester.</p>
+      <div class="submission">
+        <div class="box">
+          <div class="kicker" style="margin-bottom:8px">Google Drive Links</div>
+          <div class="links">
+            <a class="btn btn-primary" href="https://drive.google.com/drive/folders/16P2Kl0elgADaVA7dYw1QpjMTbsZxTQJv?usp=drive_link" target="_blank" rel="noopener">Assignment</a>
+            <a class="btn btn-ghost" href="https://drive.google.com/drive/folders/1vFNrSaj2xTgp7ube5it_MWrRb9jEDN7T?usp=drive_link" target="_blank" rel="noopener">Experiment</a>
+          </div>
+            </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="foot">
+      <div class="brand">
+    
+        <img class="logo-img" src="assets/logo.jpeg" alt="CampusGreen logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+        <div class="logo" aria-hidden="true" style="display:none"></div>
+        <span>CampusGreen</span>
+      </div>
+      <div class="tiny">© <span id="year"></span> CampusGreen. Study bright. Live light.</div>
+    </div>
+  </footer>
+
+  <script>
+    // Set current year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // (ack function removed with name submission input)
+
+    // Smooth scroll for internal nav
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id = a.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); }
+      });
+    });
+  </script>
+</body>
+</html>
